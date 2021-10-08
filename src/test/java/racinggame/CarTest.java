@@ -24,14 +24,14 @@ public class CarTest {
     }
 
     @Test
-    public void CarNaming() {
+    public void carNaming() {
         String alien = "alien";
         assertThat(car.name()).isEqualTo(alien);
     }
 
     @DisplayName("자동차 이름이 1글자 이상 5글지 이하가 아닐경우 테스트")
     @Test
-    public void CarNaming_5Length_LE() {
+    public void carNaming_5Length_LE() {
 
         String batman = "batman";
         String empty = "";
@@ -43,7 +43,7 @@ public class CarTest {
 
     @DisplayName("자동자가 전진 및 멈춤을 판별하는 기능 - GO 테스트")
     @Test
-    public void CarPlay_GO() {
+    public void carPlay_GO() {
 
         RacingResult result = car.play(4);
         assertThat(result.gets()).contains(CarStatus.GO);
@@ -51,7 +51,7 @@ public class CarTest {
 
     @DisplayName("자동자가 전진 및 멈춤을 판별하는 기능 - STOP 테스트")
     @Test
-    public void CarPlay_STOP() {
+    public void carPlay_STOP() {
 
         RacingResult result = car.play(3);
         assertThat(result.gets()).contains(CarStatus.STOP);
@@ -59,7 +59,7 @@ public class CarTest {
 
     @DisplayName("사용자로부터 받은 자동차이름을 구분하여 각 자동차에게 부여하는 기능")
     @Test
-    public void CarsNamingReadFromUser() {
+    public void carsNamingReadFromUser() {
 
         Cars cars = new Cars("lee,kim,alien,pabi");
         assertThat(cars).contains(new Car("lee"), new Car("kim"), new Car("alien"), new Car("pabi"));
