@@ -1,6 +1,6 @@
 package racinggame.car;
 
-import nextstep.utils.Randoms;
+import racinggame.result.RacingResult;
 
 public class Car {
 
@@ -27,7 +27,19 @@ public class Car {
         return this.name;
     }
 
-    public int play() {
-        return Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
+//    private int generateNumber() {
+//        return Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
+//    }
+
+    public RacingResult play(int random) {
+        RacingResult result = new RacingResult();
+        if(CarStatus.isGo(random)) {
+            result.report(CarStatus.GO);
+            return result;
+        }
+
+        result.report(CarStatus.STOP);
+        return result;
+
     }
 }

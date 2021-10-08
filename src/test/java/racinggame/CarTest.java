@@ -1,19 +1,29 @@
 package racinggame;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racinggame.car.Car;
+import racinggame.result.RacingResult;
+import racinggame.car.CarStatus;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
 
+    private Car car;
+
+    @BeforeEach
+    public void setup() {
+        String alien = "alien";
+        car = new Car(alien);
+    }
+
     @Test
     public void CarNaming() {
-        String pobi = "pobi";
-        Car car = new Car(pobi);
-        assertThat(car.name()).isEqualTo(pobi);
+        String alien = "alien";
+        assertThat(car.name()).isEqualTo(alien);
     }
 
     @DisplayName("자동차 이름이 1글자 이상 5글지 이하가 아닐경우 테스트")
@@ -28,14 +38,20 @@ public class CarTest {
         assertThatThrownBy(() -> new Car(batman)).isInstanceOf(IllegalArgumentException.class).hasMessage(message);
     }
 
-    @DisplayName("자동차가 랜덤숫자를 생성하는 기능")
+    @DisplayName("자동자가 전진 및 멈춤을 판별하는 기능 - GO 테스트")
     @Test
-    public void CarPlay() {
+    public void CarPlay_GO() {
 
-        String alien = "aline";
-        Car car = new Car(alien);
-        int result = car.play();
-        assertThat(result).isGreaterThanOrEqualTo(1);
-        assertThat(result).isLessThanOrEqualTo(9);
+        RacingResult result = car.play(4);
+        assertThat(result.gets()).contains(CarStatus.GO);
     }
+
+    @DisplayName("자동자가 전진 및 멈춤을 판별하는 기능 - STOP 테스트")
+    @Test
+    public void CarPlay_STOP() {
+
+        RacingResult result = car.play(3);
+        assertThat(result.gets()).contains(CarStatus.STOP);
+    }
+
 }
