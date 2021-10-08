@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racinggame.car.Car;
+import racinggame.car.RacingCar;
 import racinggame.car.RacingCars;
 import racinggame.car.CarStatus;
 import racinggame.ui.Output;
@@ -60,7 +61,8 @@ public class CarTest {
     public void carsNamingReadFromUser() {
 
         RacingCars cars = new RacingCars("lee,kim,alien,pabi");
-        assertThat(cars).contains(new Car("lee"), new Car("kim"), new Car("alien"), new Car("pabi"));
+        assertThat(cars).contains(new RacingCar("lee"), new RacingCar("kim"),
+                new RacingCar("alien"), new RacingCar("pabi"));
     }
 
 }

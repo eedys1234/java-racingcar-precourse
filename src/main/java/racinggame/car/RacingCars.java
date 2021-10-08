@@ -20,7 +20,7 @@ public class RacingCars implements Iterable {
         String[] splitNames = split(names);
 
         for(String name : splitNames) {
-            cars.add(new RacingCar(new Car(name)));
+            cars.add(new RacingCar(name));
         }
         return cars;
     }
