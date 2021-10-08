@@ -1,7 +1,5 @@
 package racinggame.car;
 
-import racinggame.result.RacingResult;
-
 import java.util.Objects;
 
 import static racinggame.ui.Output.ERROR_MESSAGE;
@@ -11,8 +9,6 @@ public class Car {
     private static final String INVALID_NAME = "1글자 이상 5글자 이하일경우만 이름을 입력할 수 있습니다.";
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 5;
-    private static final int MIN_NUMBER = 1;
-    private static final int MAX_NUMBER = 9;
 
     private String name;
 
@@ -31,15 +27,11 @@ public class Car {
         return this.name;
     }
 
-    public RacingResult play(int random) {
-        RacingResult result = new RacingResult();
+    public CarStatus play(int random) {
         if(CarStatus.isGo(random)) {
-            result.report(CarStatus.GO);
-            return result;
+            return CarStatus.GO;
         }
-
-        result.report(CarStatus.STOP);
-        return result;
+        return CarStatus.STOP;
     }
 
     @Override

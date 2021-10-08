@@ -1,24 +1,26 @@
 package racinggame.car;
 
+import racinggame.result.Result;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Cars implements Iterable {
+public class RacingCars implements Iterable {
 
     private static final String SEPARATOR = ",";
-    List<Car> cars;
+    List<RacingCar> cars;
 
-    public Cars(String names) {
+    public RacingCars(String names) {
         this.cars = create(names);
     }
 
-    private List<Car> create(String names) {
-        List<Car> cars = new ArrayList<>();
+    private List<RacingCar> create(String names) {
+        List<RacingCar> cars = new ArrayList<>();
         String[] splitNames = split(names);
 
         for(String name : splitNames) {
-            cars.add(new Car(name));
+            cars.add(new RacingCar(new Car(name)));
         }
         return cars;
     }
@@ -30,5 +32,14 @@ public class Cars implements Iterable {
     @Override
     public Iterator iterator() {
         return cars.iterator();
+    }
+
+    public Result play() {
+        Result result = new Result();
+        for(RacingCar car : cars) {
+            car.play();
+            result.add(car);
+        }
+        return result;
     }
 }
