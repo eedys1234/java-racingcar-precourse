@@ -4,8 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racinggame.car.Car;
+import racinggame.car.Cars;
 import racinggame.result.RacingResult;
 import racinggame.car.CarStatus;
+
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
@@ -52,6 +55,14 @@ public class CarTest {
 
         RacingResult result = car.play(3);
         assertThat(result.gets()).contains(CarStatus.STOP);
+    }
+
+    @DisplayName("사용자로부터 받은 자동차이름을 구분하여 각 자동차에게 부여하는 기능")
+    @Test
+    public void CarsNamingReadFromUser() {
+
+        Cars cars = new Cars("lee,kim,alien,pabi");
+        assertThat(cars).contains(new Car("lee"), new Car("kim"), new Car("alien"), new Car("pabi"));
     }
 
 }

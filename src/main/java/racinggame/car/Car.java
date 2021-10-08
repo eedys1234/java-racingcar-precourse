@@ -2,6 +2,10 @@ package racinggame.car;
 
 import racinggame.result.RacingResult;
 
+import java.util.Objects;
+
+import static racinggame.ui.Output.ERROR_MESSAGE;
+
 public class Car {
 
     private static final String INVALID_NAME = "1글자 이상 5글자 이하일경우만 이름을 입력할 수 있습니다.";
@@ -19,17 +23,13 @@ public class Car {
 
     private void validate(String name) {
         if(name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(INVALID_NAME);
+            throw new IllegalArgumentException(String.format("%s %s", ERROR_MESSAGE, INVALID_NAME));
         }
     }
 
     public String name() {
         return this.name;
     }
-
-//    private int generateNumber() {
-//        return Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
-//    }
 
     public RacingResult play(int random) {
         RacingResult result = new RacingResult();
@@ -40,6 +40,18 @@ public class Car {
 
         result.report(CarStatus.STOP);
         return result;
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return Objects.equals(name, car.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
