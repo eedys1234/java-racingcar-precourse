@@ -18,15 +18,14 @@ public class RacingGame {
     }
 
     public void run() {
-        Output.printCarNamesInput();
         receiveRacingCarNamesFromUser();
-        Output.printRacingTimeInput();
         receiveRacingTimeFromUser();
         play();
     }
 
     private void receiveRacingCarNamesFromUser() {
         try {
+            Output.printCarNamesInput();
             racingCars = new RacingCars(Input.readCarNames());
         }
         catch (IllegalArgumentException e) {
@@ -37,6 +36,7 @@ public class RacingGame {
 
     private void receiveRacingTimeFromUser() {
         try {
+            Output.printRacingTimeInput();
             racingTime = new RacingTime(Input.readRacingTime());
         } catch (IllegalArgumentException e) {
             Output.printErrorMessage(e.getMessage());

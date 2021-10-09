@@ -23,7 +23,7 @@ public class RacingTime {
     }
 
     public void validate(String time) {
-        if(time.length() > 1) {
+        if(time.length() == 0) {
             throw new IllegalArgumentException(String.format("%s %s", Output.ERROR_MESSAGE, INVALID_LENGTH_TIME_MESSAGE));
         }
 
