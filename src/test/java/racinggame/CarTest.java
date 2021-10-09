@@ -9,6 +9,8 @@ import racinggame.car.RacingCars;
 import racinggame.car.CarStatus;
 import racinggame.ui.Output;
 
+import java.util.NoSuchElementException;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
@@ -40,12 +42,12 @@ public class CarTest {
         assertThatThrownBy(() -> new Car(batman)).isInstanceOf(IllegalArgumentException.class).hasMessage(message);
     }
 
-    @DisplayName("자동자가 전진 및 멈춤을 판별하는 기능 - GO 테스트")
+    @DisplayName("자동자가 전진 및 멈춤을 판별하는 기능 - MovingForward 테스트")
     @Test
-    public void carPlay_GO() {
+    public void carPlay_MovingForward() {
 
         CarStatus status = car.play(4);
-        assertThat(status).isEqualTo(CarStatus.GO);
+        assertThat(status).isEqualTo(CarStatus.MOVING_FORWARD);
     }
 
     @DisplayName("자동자가 전진 및 멈춤을 판별하는 기능 - STOP 테스트")

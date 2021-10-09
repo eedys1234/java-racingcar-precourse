@@ -1,30 +1,59 @@
 package racinggame.game;
 
 import racinggame.car.RacingCars;
-import racinggame.result.Result;
+import racinggame.referee.Referee;
+import racinggame.referee.Winners;
+import racinggame.result.PlayOnceResult;
 import racinggame.ui.Input;
 import racinggame.ui.Output;
 
 public class RacingGame {
 
-    private RacingCars cars;
+    private RacingCars racingCars;
+    private RacingTime racingTime;
+    private Referee referee;
+
+    public RacingGame() {
+        referee = new Referee();
+    }
 
     public void run() {
         Output.printCarNamesInput();
-        cars = new RacingCars(Input.readCarNames());
-
+        receiveRacingCarNamesFromUser();
         Output.printRacingTimeInput();
-        RacingTime racingTime = new RacingTime(Input.readRacingTime());
-        play(racingTime);
+        receiveRacingTimeFromUser();
+        play();
     }
 
-    private void play(RacingTime racingTime) {
+    private void receiveRacingCarNamesFromUser() {
+        try {
+            racingCars = new RacingCars(Input.readCarNames());
+        }
+        catch (IllegalArgumentException e) {
+            Output.printErrorMessage(e.getMessage());
+            receiveRacingCarNamesFromUser();
+        }
+    }
+
+    private void receiveRacingTimeFromUser() {
+        try {
+            racingTime = new RacingTime(Input.readRacingTime());
+        } catch (IllegalArgumentException e) {
+            Output.printErrorMessage(e.getMessage());
+            receiveRacingTimeFromUser();
+        }
+    }
+
+    private void play() {
 
         while(racingTime.hasNext()) {
-            Result result = cars.play();
-            Output.printResult(result.display());
+            PlayOnceResult playOnceResult = racingCars.playOnce();
+            Output.printPlayOnceResult(playOnceResult.display());
             racingTime.execute();
         }
 
+        Winners winners = referee.judge(racingCars);
+        Output.printRacingWinnerResult(winners.get());
     }
+
 }

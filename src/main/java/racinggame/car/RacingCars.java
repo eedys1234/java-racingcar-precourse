@@ -1,12 +1,12 @@
 package racinggame.car;
 
-import racinggame.result.Result;
+import racinggame.result.PlayOnceResult;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class RacingCars implements Iterable {
+public class RacingCars implements Iterable<RacingCar> {
 
     private static final String SEPARATOR = ",";
     List<RacingCar> cars;
@@ -34,12 +34,12 @@ public class RacingCars implements Iterable {
         return cars.iterator();
     }
 
-    public Result play() {
-        Result result = new Result();
+    public PlayOnceResult playOnce() {
+        PlayOnceResult oncePlayResult = new PlayOnceResult();
         for(RacingCar car : cars) {
             car.play();
-            result.add(car);
+            oncePlayResult.report(car);
         }
-        return result;
+        return oncePlayResult;
     }
 }

@@ -3,15 +3,15 @@ package racinggame.car;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RacingResult {
+public class CarPlayResult {
 
     private List<CarStatus> carStatuses;
 
-    public RacingResult() {
+    public CarPlayResult() {
         carStatuses = new ArrayList<>();
     }
 
-    public String print() {
+    public String currentStatus() {
         StringBuilder marks = new StringBuilder();
         for(CarStatus status : carStatuses) {
             marks.append(status.mark());

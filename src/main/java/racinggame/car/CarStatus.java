@@ -2,7 +2,7 @@ package racinggame.car;
 
 public enum CarStatus {
 
-    GO("-"), STOP("");
+    MOVING_FORWARD("-"), STOP("");
 
     private static final int CRITERIA = 4;
     private String mark;
@@ -11,7 +11,7 @@ public enum CarStatus {
         this.mark = mark;
     }
 
-    public static boolean isGo(int number) {
+    public static boolean isMovingForward(int number) {
         return number >= CRITERIA;
     }
 

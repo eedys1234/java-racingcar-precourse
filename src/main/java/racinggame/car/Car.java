@@ -1,5 +1,8 @@
 package racinggame.car;
 
+import racinggame.ui.Output;
+
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import static racinggame.ui.Output.ERROR_MESSAGE;
@@ -19,7 +22,7 @@ public class Car {
 
     private void validate(String name) {
         if(name.length() < MIN_NAME_LENGTH || name.length() > MAX_NAME_LENGTH) {
-            throw new IllegalArgumentException(String.format("%s %s", ERROR_MESSAGE, INVALID_NAME));
+            throw new IllegalArgumentException(String.format("%s %s", Output.ERROR_MESSAGE, INVALID_NAME));
         }
     }
 
@@ -28,8 +31,8 @@ public class Car {
     }
 
     public CarStatus play(int random) {
-        if(CarStatus.isGo(random)) {
-            return CarStatus.GO;
+        if(CarStatus.isMovingForward(random)) {
+            return CarStatus.MOVING_FORWARD;
         }
         return CarStatus.STOP;
     }

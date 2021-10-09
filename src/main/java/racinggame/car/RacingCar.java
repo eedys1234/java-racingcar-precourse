@@ -10,25 +10,29 @@ public class RacingCar {
     private static final int MAX_NUMBER = 9;
 
     private Car car;
-    private RacingResult racingResult;
+    private CarPlayResult carPlayResult;
 
     public RacingCar(String name) {
         this.car = new Car(name);
-        this.racingResult = new RacingResult();
+        this.carPlayResult = new CarPlayResult();
     }
 
     public void play() {
         int random = Randoms.pickNumberInRange(MIN_NUMBER, MAX_NUMBER);
         CarStatus status = car.play(random);
-        racingResult.report(status);
+        carPlayResult.report(status);
     }
 
-    public RacingResult getRacingResult() {
-        return this.racingResult;
+    public String currentStatus() {
+        return this.carPlayResult.currentStatus();
     }
 
-    public Car getCar() {
-        return this.car;
+    public String carName() {
+        return this.car.name();
+    }
+
+    public boolean equalCurrentStatus(RacingCar otherRacingCar) {
+        return this.carPlayResult.currentStatus().equals(otherRacingCar.currentStatus());
     }
 
     @Override
